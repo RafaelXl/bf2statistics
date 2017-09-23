@@ -16,7 +16,7 @@ function getTheaterTimeQueryByName($PID, $ExpansionID)
 			$maplist .= ' OR mapid='.$value;
 		}
 	}
-	return "SELECT sum(time) as time, sum(win) as wins, sum(loss) as losses, max(best) as br FROM maps WHERE id = $PID AND ".$maplist.');';	
+	return "SELECT sum(time) as time, sum(win) as wins, sum(loss) as losses, max(best) as br FROM maps WHERE id = ".intval($PID)." AND ".$maplist.');';
 }
 
 ?>

@@ -228,8 +228,87 @@ elseif(strcasecmp($GO, 'ubar') == 0)
 /***************************************************************
  * SHOW TOP TEN - default
  ***************************************************************/
-else
-{  // show the top ten
+elseif(strcasecmp($GO, 'servers') == 0) {
+    include( ROOT . DS . 'ServerInfo.php' );
+
+
+    $serverInfo = new ServerInfo();
+    if(isset($_GET['srv_id'])) {
+        $data = mysql_fetch_assoc(mysql_query("SELECT * FROM servers WHERE id=".intval($_GET['srv_id']).";"));
+        $serverData = $serverInfo->loadGamespyData($data['ip'],$data['queryport']);
+
+        $serverData['server']['team1_name'] = $serverInfo->getArmyName($serverData['server']['bf2_team1']);
+        $serverData['server']['team2_name'] = $serverInfo->getArmyName($serverData['server']['bf2_team2']);
+
+        // Get our map Image
+        $map = str_replace(' ', '_', strtolower($serverData['server']['mapname']));
+
+        // devil's Perch Fix
+        $map = str_replace('\'', '', $map);
+
+        $location = ROOT . DS . 'ASP'.DS. 'frontend' . DS . 'images' . DS . 'maps' . DS;
+
+        // Make sure our map file exists, or replace it with default one
+        if( !file_exists($location . $map .'.png') )
+        {
+            $map = 'default';
+        }
+
+        $serverData['map'] = $map;
+        $serverData['ip'] = $data['ip'];
+
+        //echo '<pre>'.print_r($serverData,true).'</pre>';
+
+        include( TEMPLATE_PATH .'server_detail.php');
+    } else {
+        $LASTUPDATE = 0;
+        $NEXTUPDATE = 0;
+        if(isCached('servers',30)) {
+            $template = getCache('servers');
+            $LASTUPDATE = intToTime(getLastUpdate( CACHE_PATH . 'servers.cache'));
+            $NEXTUPDATE = intToTime(getNextUpdate( CACHE_PATH . 'servers.cache', 30));
+        } else {
+
+            $res = mysql_query("SELECT * FROM servers ORDER BY ip ASC;");
+            $servers = [];
+            while ($data = mysql_fetch_assoc($res)) {
+                $serverData = $serverInfo->loadGamespyData($data['ip'], $data['queryport']);
+
+                $serverData['id'] = $data['id'];
+
+                $serverData['server']['team1_name'] = $serverInfo->getArmyName($serverData['server']['bf2_team1']);
+                $serverData['server']['team2_name'] = $serverInfo->getArmyName($serverData['server']['bf2_team2']);
+
+                // Get our map Image
+                $map = str_replace(' ', '_', strtolower($serverData['server']['mapname']));
+
+                // devil's Perch Fix
+                $map = str_replace('\'', '', $map);
+
+                $location = ROOT . DS . 'ASP' . DS . 'frontend' . DS . 'images' . DS . 'maps' . DS;
+
+                // Make sure our map file exists, or replace it with default one
+                if (!file_exists($location . $map . '.png')) {
+                    $map = 'default';
+                }
+
+                $serverData['map'] = $map;
+
+                $servers[] = $serverData;
+            }
+
+
+            //echo '<pre>'.print_r($servers,true).'</pre>';
+
+            include(TEMPLATE_PATH . 'servers.php');
+            writeCache('servers', $template);
+            $LASTUPDATE = intToTime(0);
+            $NEXTUPDATE = intToTime(30);
+        }
+    }
+    $template = str_replace('{:LASTUPDATE:}', $LASTUPDATE, $template);
+    $template = str_replace('{:NEXTUPDATE:}', $NEXTUPDATE, $template);
+} else {  // show the top ten
 
 	$LASTUPDATE = 0;
 	$NEXTUPDATE = 0;

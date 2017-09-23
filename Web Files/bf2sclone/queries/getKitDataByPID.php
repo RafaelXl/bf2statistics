@@ -1,3 +1,3 @@
 <?php
-	$query = "SELECT * FROM kits WHERE id = $PID;";
+	$query = "SELECT * FROM kits WHERE id = ".intval($PID).";";
 ?>

@@ -1,0 +1,3 @@
+RewriteEngine on
+RewriteBase /
+RewriteRule ^badge/([0-9]+).png(/?)+$ badge.php?pid=$1

@@ -7,11 +7,11 @@
 		{
 			if ($first)
 			{
-				$query .= " id='$value'";
+				$query .= " id='".intval($value)."'";
 				$first = false;
 			}
 			else
-				$query .= "or id='$value'";
+				$query .= "or id='".intval($value)."'";
 		}
 		$query .= ' ORDER BY SCORE DESC LIMIT 50;';
 	}

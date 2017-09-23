@@ -1,4 +1,4 @@
 <?php
-	$query = "SELECT * FROM awards WHERE id = $PID LIMIT 5;";
+	$query = "SELECT * FROM awards WHERE id = ".intval($PID)." LIMIT 5;";
 ?>
 

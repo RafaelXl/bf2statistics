@@ -1,3 +1,3 @@
 <?php
-	$query = "SELECT name FROM player WHERE id = $PID;";
+	$query = "SELECT name FROM player WHERE id = ".intval($PID).";";
 ?>

@@ -1117,6 +1117,21 @@ $template = '
 								</td>
 							</tr>
 						</table>
+						
+						<table class="stat">
+
+        <tbody><tr><td width="30%"><b><span id="selection_index52" class="selection_index"></span>html - code</b></td>
+            <td width="70%">
+			<textarea readonly="" style="width:100%; height:29px; font-size:11px; border:1px solid #E0E0E0;" onfocus="this.select();">&lt;a href=&quot;http://bf2scores.com/?pid='.$PID.'&quot;&gt;&lt;img src=&quot;http://bf2scores.com/badge/'.$PID.'.png&quot;&gt;&lt;/a&gt;</textarea>
+            </td>
+        
+        </tr><tr>
+        <td><b><span id="selection_index55" class="selection_index"></span>BB - cod</b></td>
+            <td><textarea readonly="" style="width:100%; height:29px; font-size:11px; border:1px solid #E0E0E0;" onfocus="this.select();">[url=http://bf2scores.com/?pid='.$PID.'][img]http://bf2scores.com/badge/'.$PID.'.png[/img][/url]</textarea>
+            </td>
+        </tr>
+</tbody>
+</table>
 
 						<a id="secondhome" href="'.$ROOT.'"> </a>
 						<!-- end content == footer below -->
@@ -1131,10 +1146,11 @@ $template = '
 		
 		<ul id="navitems">
 			<li><a href="'. $ROOT .'">Home</a></li>
+			<li><a href="'. $ROOT .'?go=servers">Servers</a></li>
 			<li><a href="'. $ROOT .'?go=my-leaderboard">My Leader Board</a></li>
 			<li><a href="'. $ROOT .'?go=currentranking">Rankings</a></li>
 			<li><a href="'. $ROOT .'?go=ubar">UBAR</a></li>
-			<li><a href="http://wiki.bf2s.com/">Wiki</a></li>
+			<li><a href="https://battlelog.co/post.php?id=28081" target="_blank">Support Forum</a></li>
 		</ul>
 		
 		<form action="'.$ROOT.'?go=search" method="post" id="getstats">

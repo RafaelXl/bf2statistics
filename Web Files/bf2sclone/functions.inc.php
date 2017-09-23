@@ -41,10 +41,10 @@ function intToMins($time)
 
 /* CHACHING FUNCTIONS */
 
-function isCached($id)
+function isCached($id, $refreshTime = RANKING_REFRESH_TIME)
 {
 	$file = CACHE_PATH . $id .'.cache';
-	if(getNextUpdate($file, RANKING_REFRESH_TIME) > 0)
+	if(getNextUpdate($file, $refreshTime) > 0)
 	{
 		return true;
 	}

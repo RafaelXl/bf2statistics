@@ -1,3 +1,3 @@
 <?php
-	$query = "SELECT mapid FROM maps WHERE id = $PID ORDER BY time desc limit 1;";
+	$query = "SELECT mapid FROM maps WHERE id = ".intval($PID)." ORDER BY time desc limit 1;";
 ?>

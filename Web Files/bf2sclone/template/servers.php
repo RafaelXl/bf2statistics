@@ -3,7 +3,7 @@ $template = '
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" class="inner">
 <head>
-	<title>Rankings, '. $TITLE .'</title>
+	<title>Servers, '. $TITLE .'</title>
 	<link rel="icon" href="'.$ROOT.'favicon.ico" type="image/x-icon">
 	<link rel="shortcut icon" href="'.$ROOT.'favicon.ico" type="image/x-icon">
 	<link rel="stylesheet" type="text/css" media="screen" href="'.$ROOT.'css/two-tiers.css">
@@ -21,56 +21,31 @@ $template = '
 
 <div id="page-1">
 	<div id="page-2">
-		<h1 id="page-title">Current Rankings <small>"nuh uh! I\'m better!"</small></h1>
+		<h1 id="page-title">Servers<small>"nuh uh! I\'m better!"</small></h1>
 		<div id="page-3">
 			<div id="content"><div id="content-id"><!-- template header end == begin content below -->
-		
-				<!--
-				<ul id="stats-nav">
-					<li><a href="'.$ROOT.'">Home</a></li>
-					<li><a href="'.$ROOT.'?go=search">Search Stats</a></li>
-					<li class="current"><a href="'.$ROOT.'?go=currentranking">Current Ranking</a></li>
-					<li><a href="'.$ROOT.'?go=my-leaderboard">My Leaderboard</a></li>
-				</ul>
-				-->
-				
-				<table id="rankslist-home" class="stat" border="0" cellpadding="0" cellspacing="0">
-				<tbody>
-					<tr>
-						<th>Stat</th>
-						<th>#1</th>
-						<th>#2</th>
-						<th>#3</th>
-						<th>#4</th>
-						<th>#5</th>
-					</tr>';
-				
-					foreach ($rankings as $key => $value)
-					{
-						$desc = (isset($value['desc']) && !empty($value['desc'])) ? $value['desc'] : '&nbsp;';
-						$template .= '
-						<tr>
-							<td>'.$value['name'].'</td>';
-						
-						foreach($value['data'] as $v)
-						{
-							$template .= '
-							<td>
-								<img src="'.$ROOT.'game-images/ranks/icon/rank_'.$v['rank'].'.gif" alt="'.getRankByID($v['rank']).'">
-								<a href="'.$ROOT.'?pid='.$v['id'].'">'.$v['name'].'</a>
-								<br/>'. $v['value'] .'
-							</td>';
-						}
-						$template .= '
-						</tr>		
-						<tr class="separator">
-							<td colspan="6">'. $desc .'</td>
-						</tr>';
-					}
-				
-				$template .= '	
-				</tbody>
-				</table>
+			
+				<table cellspacing="0" cellpadding="0" border="0" style="width: 100%;" class="stat">
+							<tbody>
+								<tr>
+									<th>Server Name</th>
+									<th>Banner</th>
+									<th>Players</th>
+								</tr>
+				';
+
+foreach($servers as $server){
+    $template .= '<tr>
+<td><a href="/?go=servers&srv_id='.$server['id'].'">'.$server['server']['hostname'].'</a><br/>'.$server['map'].'</td>
+<td><img src="'.$server['server']['bf2_sponsorlogo_url'].'"></td>
+<td>'.$server['server']['numplayers'].'/'.$server['server']['maxplayers'].'</td>
+</tr>';
+}
+
+$template .= '</tbody>
+							</table>';
+
+$template .= '	
 
 				<p><!-- end content == footer below --></p>
 				<p>&nbsp;</p>

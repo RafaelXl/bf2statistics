@@ -395,10 +395,11 @@ $template = '
 	
 		<ul id="navitems">
 			<li><a href="'. $ROOT .'">Home</a></li>
+			<li><a href="'. $ROOT .'?go=servers">Servers</a></li>
 			<li><a href="'. $ROOT .'?go=my-leaderboard">My Leader Board</a></li>
 			<li><a href="'. $ROOT .'?go=currentranking">Rankings</a></li>
 			<li><a href="'. $ROOT .'?go=ubar">UBAR</a></li>
-			<li><a href="http://wiki.bf2s.com/">Wiki</a></li>
+			<li><a href="https://battlelog.co/post.php?id=28081" target="_blank">Support Forum</a></li>
 		</ul>
 		
 		<form action="'.$ROOT.'?go=search" method="post" id="getstats">

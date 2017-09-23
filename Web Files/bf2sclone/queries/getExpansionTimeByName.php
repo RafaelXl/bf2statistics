@@ -16,7 +16,7 @@ function getExpasionTimeQueryByName($PID, $ExpansionID)
 			$maplist .= ' OR mapid='.$value;
 		}
 	}
-	return "SELECT sum(time) as time FROM maps WHERE id=$PID AND ".$maplist.');';	
+	return "SELECT sum(time) as time FROM maps WHERE id=".intval($PID)." AND ".$maplist.');';
 }
 
 ?>

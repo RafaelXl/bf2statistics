@@ -7,5 +7,5 @@
 		$string .= 'time'. $i;
 		if($i != $count) $string .=', ';
 	}
-	$query = "SELECT $string FROM vehicles WHERE id = $PID LIMIT 1;";
+	$query = "SELECT $string FROM vehicles WHERE id = ".intval($PID)." LIMIT 1;";
 ?>

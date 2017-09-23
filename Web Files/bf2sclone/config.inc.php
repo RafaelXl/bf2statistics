@@ -1,19 +1,19 @@
 <?php
-
+//exit('Statistics website is under maintenance!<br>But you can continue playing on our server, statistics be saved and will be visible after maintenance will be done!');
 // Database connection information
 $DBIP = 'localhost';
-$DBNAME = 'bf2stats';
-$DBLOGIN = 'admin';
-$DBPASSWORD = 'admin';
+$DBNAME = '';
+$DBLOGIN = '';
+$DBPASSWORD = '';
 
 // Leader board title
-$TITLE = 'Bf2sClone';
+$TITLE = 'Battlefield 2';
 
 // Refresh time in seconds for stats
 define ('RANKING_REFRESH_TIME', 600); // -> default: 600 seconds (10 minutes)
 
 // Number of players to show on the leaderboard frontpage
-define ('LEADERBOARD_COUNT', 25);
+define ('LEADERBOARD_COUNT', 50);
 
 
 

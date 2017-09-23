@@ -1,4 +1,2 @@
 <?php
-	$query = "SELECT * FROM awards where id = $PID AND awd = $AWD AND level = $LEVEL LIMIT 1";
-?>
-
+	$query = "SELECT * FROM awards where id = ".intval($PID)." AND awd = ".intval($AWD)." AND level = ".intval($LEVEL)." LIMIT 1";
